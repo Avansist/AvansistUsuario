@@ -1,0 +1,60 @@
+﻿@model IEnumerable<AvansistUsuario.Models.Entities.Usuario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Gestionar Usuarios</h1>
+
+<p>
+    <a class="btn btn-outline-success" asp-action="Create"><i class="far fa-plus-square"></i> Crear Nuevo Usuario</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Correo)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rol)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Correo)
+            </td>            
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rol.Nombre)
+            </td>
+            <td>
+                <a class="btn btn-outline-success" asp-action="Edit" asp-route-id="@item.UsuarioId"><i class="far fa-edit"></i></a> |
+                <a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@item.UsuarioId"><i class="fas fa-binoculars"></i></a> |
+                <a class="btn btn-outline-danger" onclick="return confirm('¿Desea eliminar este usuario?')" asp-action="Delete" asp-route-id="@item.UsuarioId"><i class="far fa-trash-alt"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
